@@ -7,6 +7,8 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+install.packages('tidyverse')
+
 
 ```
 
@@ -24,8 +26,12 @@ Let's go back to the previous exercise on implementation of the sampling distrib
 3. Construct the another vector called `test` and assigned `1` hundred time in that vector. Use `rep()` function for generation of same value for 100 times. 
 4. Then, using `cbind` function to combined those two vectors" `test` and `mean_list`, and treat the result as `data.frame` and assigned to the object name `mean_list_1`. You can try with below demo code. 
 
-```
-means_list_1 <- data.frame(cbind(number, mean_list))
+```{r replicate}
+set.seed(2345)
+means_list <- replicate(n = 100, expr = mean(sample(df$Sepal.Length, size = 10, replace = TRUE)))
+test       <- replicate(n=100,expr = mean(sample(df$Sepal.Length, size=10, replace = TRUE)))
+                         
+means_list_1 <- data.frame(cbind(test, means_list))
 
 ```
 
@@ -44,7 +50,14 @@ And, perform the following function from that list.
 
 For example, if we use the following command, we can get the first dataframe. You work is to calculate the mean value of column `mean_list`. 
 
-```
+```{r replicate}
+set.seed(2345)
+
+means_list_22 <- replicate(n = 200, expr = mean(sample(df$Sepal.Length, size = 30, replace = TRUE)))
+means_list_33 <- replicate(n = 1000, expr = mean(sample(df$Sepal.Length, size = 50, replace = TRUE)))
+means_list_44 <- replicate(n = 3000, expr = mean(sample(df$Sepal.Length, size = 50, replace = TRUE)))
+means_list_55 <- replicate(n = 10000, expr = mean(sample(df$Sepal.Length, size = 50, replace = TRUE)))
+
 means_seris[[1]]
 ```
 
